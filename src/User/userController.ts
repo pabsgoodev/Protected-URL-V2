@@ -8,7 +8,14 @@ export class UserController {
     async login(req: Request, res: Response){
         const email = escapeHtml(req.body.email);
         const password = escapeHtml(req.body.password);
-        
+
+        if (!email || typeof email !== 'string') {
+            return res.status(400).json({ error: 'Email inválido' });
+        }
+        if (!password || typeof password !== 'string') {
+            return res.status(400).json({ error: 'Password inválido' });
+        }
+
         const service = new authService();
         try{
             const result = await service.exeLogin(email, password);
