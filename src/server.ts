@@ -3,8 +3,11 @@ import 'dotenv/config'; // SEMPRE IMPORTAR ISTO
 import { AppDataSource } from './database/connection';
 import { createUser } from './User/userSetup';
 import router from './User/userRoutes';
+import helmet from "helmet";
 
 const app = express();
+
+app.use(helmet());
 app.use(express.json());
 app.use(router);
 
@@ -12,10 +15,6 @@ const PORT = process.env.PORT
 if (!process.env.PORT) {
     throw new Error('PORT não definida');
 }
-
-app.get('/hello', (req, res) => {
-    res.send('Hello, World!');
-});
 
 
 AppDataSource.initialize()
