@@ -84,10 +84,7 @@ Crie um arquivo `.env` baseado no exemplo:
 
 ```
 JWT_SECRET=
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
+PORT=
 ```
 
 ## Como rodar o projeto
