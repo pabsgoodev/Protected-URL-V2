@@ -4,10 +4,14 @@ import { AppDataSource } from '../database/connection';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+type result<T, E> = readonly [T, null] | readonly [null, E];
+
 export class authService {
     private repo = AppDataSource.getRepository(User);
 
-    async exeLogin(emailReq: string, passwordReq: string) {
+    async exeLogin(
+        emailReq: string, 
+        passwordReq: string): Promise<result<{ user: { id: number, email: string }, token: string }, Error>> {
         
         const user = await this.repo.findOneBy({ email: emailReq });
         if (!user) {
@@ -24,12 +28,11 @@ export class authService {
             process.env.JWT_SECRET as string,
             { expiresIn: '1h' }
         );
-        return {
-            User: {
-                id: user.id,
-                email: user.email
-            },
-            token
-        }
+        return [{
+            user: { id: user.id, 
+            email: user.email 
+        },
+        token
+    }, null] as const;
     }
 }
