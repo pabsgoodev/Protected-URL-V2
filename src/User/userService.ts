@@ -20,7 +20,7 @@ export class authService {
 
         const isPasswordValid = await bcrypt.compare(passwordReq, user.password);
         if (!isPasswordValid) {
-            throw new Error('Invalid password');
+            throw new Error('Invalid credentials');
         }
 
         const token = jwt.sign(
