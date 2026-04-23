@@ -4,6 +4,13 @@ import { AppDataSource } from '../database/connection';
 
 export async function createUser() {
     const repo = AppDataSource.getRepository('User');
+    const userAlreadyExists = await repo.findOne({ where: { email:"admin123@gmail.com" } });
+
+    if (userAlreadyExists) {
+        console.log('User already exists');
+        return;
+    }
+
     const hash = await bcrypt.hash('password123', 12);
 
     const user = new User();

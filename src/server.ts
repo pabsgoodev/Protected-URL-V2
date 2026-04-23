@@ -20,7 +20,7 @@ if (!process.env.PORT) {
 AppDataSource.initialize()
     .then(async () => {
         console.log('Database connected successfully');
-        app.listen(PORT, () => {
+        app.listen(PORT,() => {
             console.log(`Server is running on port ${PORT}`);
         });
         await createUser();

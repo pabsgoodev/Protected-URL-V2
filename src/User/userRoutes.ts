@@ -6,7 +6,9 @@ import { limiter } from './middlewares/userLimiter';
 const router = Router();
 const controller = new UserController();
 
-router.post('/api', limiter, controller.login);
+router.post('/login', limiter, controller.login);
+
+router.post('/register', limiter, controller.register);
 
 router.get('/rota-protegida', authUser, (req, res) => {
     res.json({ message: 'Acesso autorizado à rota protegida', user: (req as any).user });
