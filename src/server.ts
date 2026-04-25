@@ -9,7 +9,7 @@ const app = express();
 
 app.use(helmet());
 app.use(express.json());
-app.use(router);
+app.use(("/api"), router);
 
 const PORT = process.env.PORT
 if (!process.env.PORT) {
