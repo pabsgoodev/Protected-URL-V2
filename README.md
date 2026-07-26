@@ -1,45 +1,45 @@
-```md
 # Auth API — Backend
 
-Este projeto é uma **API de autenticação**, desenvolvida com foco em organização, tipagem forte e boas práticas de backend.
+This project is an **authentication API** built with a strong focus on clean architecture, type safety, and backend best practices.
 
-## Objetivo
+## Purpose
 
-Demonstrar a construção de uma API utilizando Node.js com TypeScript, aplicando conceitos como:
+The goal of this project is to demonstrate how to build a scalable backend using **Node.js** and **TypeScript**, applying concepts such as:
 
-- Separação de responsabilidades
-- Tratamento de erros sem `throw`
-- Tipagem segura com `Result`
-- Arquitetura **package by features**
+* Separation of concerns
+* Error handling without `throw`
+* Strong typing with the `Result` pattern
+* **Package-by-feature** architecture
 
-## Características
+## Features
 
-- Autenticação de usuários (login)
-- Criptografia de senha com bcrypt
-- Geração de token com JWT
-- Tratamento de erros com padrão `[data, error]`
-- Código fortemente tipado
-- Estrutura escalável
+* User authentication
+* Password hashing with **bcrypt**
+* JWT token generation
+* Error handling using the `[data, error]` pattern
+* Strongly typed codebase
+* Scalable project structure
 
-## Tecnologias utilizadas
+## Technologies
 
 ### Backend
-- Node.js
-- Express
-- TypeScript
-- TypeORM
-- JWT (jsonwebtoken)
-- bcrypt
 
-### Banco de dados
-- Configurado via TypeORM (adaptável)
+* Node.js
+* Express
+* TypeScript
+* TypeORM
+* JSON Web Token (JWT)
+* bcrypt
 
-## Estrutura do projeto
+### Database
 
-O projeto segue o padrão **package by features**, onde cada funcionalidade é isolada:
+* Configured through TypeORM (database-agnostic)
 
-```
+## Project Structure
 
+The project follows the **package-by-feature** architecture, where each feature is organized into its own module.
+
+```text
 src/
 ├── User/
 │   ├── userEntity.ts
@@ -51,60 +51,54 @@ src/
 │
 ├── app.ts
 ├── server.ts
+```
 
-````
+## Return Pattern
 
-## Padrão de retorno
-
-A aplicação utiliza um padrão funcional para tratamento de erros:
+The application uses a functional approach for error handling:
 
 ```ts
 [data, error]
-````
+```
 
-### Exemplo:
-
-* Sucesso:
+### Success
 
 ```ts
 [{ user, token }, null]
 ```
 
-* Erro:
+### Error
 
 ```ts
 [null, Error]
 ```
 
-Isso evita uso de `throw` e torna o fluxo mais previsível.
+This approach avoids using `throw` for expected application errors and makes the control flow more predictable.
 
-## Variáveis de ambiente
+## Environment Variables
 
-Crie um arquivo `.env` baseado no exemplo:
+Create a `.env` file based on the following template:
 
-```
+```env
 JWT_SECRET=
 PORT=
 ```
 
-## Como rodar o projeto
+## Running the Project
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Observações
+## Notes
 
-* Projeto voltado para aprendizado e portfólio
-* Estrutura pensada para crescimento
-* Fácil adaptação para novos módulos (ex: auth, posts, etc.)
+* Built for learning purposes and portfolio projects.
+* Designed with scalability in mind.
+* Easy to extend with new modules such as authentication, posts, comments, and more.
 
-## Status do projeto
+## Project Status
 
-* Tipo: Backend
-* Uso: Portfólio / Estudo
-* Estado: Em desenvolvimento
-
-```
-```
+* **Type:** Backend API
+* **Purpose:** Portfolio / Learning
+* **Status:** In Development
